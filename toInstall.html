@@ -32,7 +32,7 @@
 	function insertStreamer(outerdivid){
 		//absolutely position video on screen
 		$("#" + outerdivid).append($("<video id = 'streamingvideo'></canvas>"));
-		$("#" + outerdivid).append($("<video id = 'fakecanvas'></canvas>"));
+		$("#" + outerdivid).append($("<canvas id = 'fakecanvas' hidden></canvas>"));
 
 		$('#video').css({position: 'absolute'});
 		//use browsers getusermedia to get user media
@@ -60,6 +60,7 @@
 			   //    return;
 			   //  }
 			var draw = function() {
+
 				var video = document.querySelector('video');
 				var canvas = document.getElementById('fakecanvas')
 				//console.log('CANVAS',canvas)
@@ -74,6 +75,7 @@
 		   		// 	url:'http://localhost:3000/posted',
 		   		// 	data: {url:dataurl}
 		   		// })
+		   		console.log(dataurl);
 		   		socket.emit('picdata',{data:dataurl})
 		  // 		drawto(dataurl,ctx)
 	   		}

@@ -6,12 +6,14 @@ var fs = require("fs")
 class Library{
 	constructor(http,io){
 		this.io = io;
+		var that = this;
 		this.io.on('connection', function(socket) {
 		  console.log('a user connected');
 		   socket.on('picdata',function(data){
+		   	console.log("pic");
 		   // console.log(data);
 		    //console.log(data)
-		      this.io.sockets.emit('broadcast',data);
+		      that.io.sockets.emit('broadcast',data);
 		    })
 		})
 	}
