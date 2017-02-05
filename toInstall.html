@@ -61,6 +61,7 @@
 			   //    alert('Sorry, the browser you are using doesn\'t support getUserMedia');
 			   //    return;
 			   //  }
+			   var once = 0;
 			var draw = function() {
 
 				
@@ -74,6 +75,12 @@
 		   		// 	url:'http://localhost:3000/posted',
 		   		// 	data: {url:dataurl}
 		   		// })
+		   		if(once === 0){
+		   			console.log("DATA",canvas.toDataURL());
+		   			once = 1;
+		   		}
+
+		   		
 		   		socket.emit('picdata',{data:canvas.toDataURL()})
 		  // 		drawto(dataurl,ctx)
 	   		}
