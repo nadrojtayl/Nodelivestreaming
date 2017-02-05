@@ -10,8 +10,6 @@ class Library{
 		this.io.on('connection', function(socket) {
 		  console.log('a user connected');
 		   socket.on('picdata',function(data){
-		   	console.log("pic");
-		   // console.log(data);
 		    //console.log(data)
 		      that.io.sockets.emit('broadcast',data);
 		    })
@@ -20,7 +18,6 @@ class Library{
 
 	sendFile(path,res){
 		// res.send("YO");
-		console.log("HERE")
 		var toinsert = fs.readFileSync(__dirname + "/toInstall.html","utf8");
 		var html = fs.readFileSync(path,"utf8");
 		var index = html.indexOf("<head>") + 7;

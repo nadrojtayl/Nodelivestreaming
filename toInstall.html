@@ -12,7 +12,7 @@
 <script>
 	function insertClient(outerdivid){
 
-		$("#" + outerdivid).append($("<canvas id = 'streamedto'></canvas>"));
+		$("#" + outerdivid).append($("<canvas id = 'streamedto' width ='750px' height = '400px'></canvas>"));
 		var ctx = document.getElementById('streamedto').getContext('2d')
    		socket.on('broadcast',function(data){drawto(data.data,ctx)})
 
@@ -32,7 +32,9 @@
 	function insertStreamer(outerdivid){
 		//absolutely position video on screen
 		$("#" + outerdivid).append($("<video id = 'streamingvideo'></canvas>"));
-		$("#" + outerdivid).append($("<canvas id = 'fakecanvas' hidden></canvas>"));
+		$("#" + outerdivid).append($("<canvas width = '750px' height = '400px' id = 'fakecanvas' hidden></canvas>"));
+		var video = document.querySelector('video');
+		var canvas = document.getElementById('fakecanvas')
 
 		$('#video').css({position: 'absolute'});
 		//use browsers getusermedia to get user media
@@ -61,22 +63,18 @@
 			   //  }
 			var draw = function() {
 
-				var video = document.querySelector('video');
-				var canvas = document.getElementById('fakecanvas')
+				
 				//console.log('CANVAS',canvas)
-				canvas.width = 750;
-				canvas.height = 460;
-				canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+				canvas.getContext('2d').drawImage(video, 0, 0, 750, 460);
 				//var ctx = document.getElementById('canvas2').getContext('2d')
-		   		var dataurl = canvas.toDataURL()
+		   		// var dataurl = canvas.toDataURL()
 		   		//dataurl = JSON.stringify(dataurl).slice(Math.floor(dataurl.length/3))
 		   		// $.ajax({
 		   		// 	method:'POST',
 		   		// 	url:'http://localhost:3000/posted',
 		   		// 	data: {url:dataurl}
 		   		// })
-		   		console.log(dataurl);
-		   		socket.emit('picdata',{data:dataurl})
+		   		socket.emit('picdata',{data:canvas.toDataURL()})
 		  // 		drawto(dataurl,ctx)
 	   		}
 
