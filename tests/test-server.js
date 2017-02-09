@@ -1,8 +1,7 @@
 var app = require('express')();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
 var lib = require(__dirname + "/main.js")
-var lib = new lib(http,io);
+var lib = new lib(app,http);
 
 app.get('/',function(req,res){
 	lib.sendFile(__dirname + "/test-html.html",res);

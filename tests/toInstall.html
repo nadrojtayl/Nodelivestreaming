@@ -3,6 +3,8 @@
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
 
+<script language="javascript" src="compressor"></script>
+
 
 <script src="/socket.io/socket.io.js"></script>
 <script> var socket = io();</script>
@@ -10,11 +12,58 @@
 
 
 <script>
+	function compress(str){
+	  var count = 0,newstr = "";
+	  for(var i =0;i<str.length;i++){
+	    var current = str.charAt(i),nextchar = str.charAt(i + 1);
+	    if(current === nextchar){
+	      count ++;
+	    } else {
+	      if(count>0){
+	        newstr = newstr + (count + 1) + current;
+	        count = 0;
+	      } else {
+	        newstr = newstr + current;
+	      }
+	    }
+	  }
+	  return newstr;
+	}
+
+	function decompress(str){
+	  var newstr = "",i=0;
+	  while(i<str.length){
+	    var current = str.charAt(i);
+	    
+	    if(!isNaN(current)){
+	      var char = str.charAt(i + 1);
+	      for(var j = 0;j<current;j++){
+	        newstr = newstr + char;
+	      }
+	      i = i + 2;
+	    } else {
+	      newstr = newstr + current;
+	      i++;
+	    }
+	  }
+	  return newstr;
+	}
+  
+
+  
+
+
+
+
+
+
 	function insertClient(outerdivid){
 
 		$("#" + outerdivid).append($("<canvas id = 'streamedto' width ='750px' height = '400px'></canvas>"));
 		var ctx = document.getElementById('streamedto').getContext('2d')
-   		socket.on('broadcast',function(data){drawto(data.data,ctx)})
+   		socket.on('broadcast',function(data){
+   			drawto(data.data,ctx)
+   		})
 
 		function drawto(url,ctx) {
 			//console.log(url);
@@ -75,13 +124,12 @@
 		   		// 	url:'http://localhost:3000/posted',
 		   		// 	data: {url:dataurl}
 		   		// })
-		   		if(once === 0){
-		   			console.log("DATA",canvas.toDataURL());
-		   			once = 1;
-		   		}
+		   		
+	   			var string = canvas.toDataURL();
+		   		
 
 		   		
-		   		socket.emit('picdata',{data:canvas.toDataURL()})
+		   		socket.emit('picdata',{data:string})
 		  // 		drawto(dataurl,ctx)
 	   		}
 

@@ -1,7 +1,7 @@
 {
-  "name": "videolibrary",
+  "name": "nodevideostreaming",
   "version": "1.0.0",
-  "description": "Use service side rendering abd websockets to insert video-streaming into any HTML file served from your Express server",
+  "description": "Easily implement videostreaming in your node-applications using server-side rendering and websockets",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

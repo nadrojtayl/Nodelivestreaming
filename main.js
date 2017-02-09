@@ -4,9 +4,12 @@ var fs = require("fs")
 
 
 class Library{
-	constructor(http,io){
-		this.io = io;
+	constructor(app,http,io){
+		this.io = require('socket.io')(http);
 		var that = this;
+		app.get("/compressor",function(q,s){
+			s.sendFile(__dirname + "/lz-string.js")
+		})
 		this.io.on('connection', function(socket) {
 		  console.log('a user connected');
 		   socket.on('picdata',function(data){
@@ -29,17 +32,6 @@ class Library{
 }
 
 
-// function start(http){
-// 	var io = require('socket.io')(http);
-// 	io.on('connection', function(socket) {
-// 	  console.log('a user connected');
-// 	   socket.on('picdata',function(data){
-// 	   // console.log(data);
-// 	    //console.log(data)
-// 	      global.io.sockets.emit('broadcast',data);
-// 	    })
-// 	})
-// }
 
 
 module.exports = Library;
