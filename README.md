@@ -71,7 +71,7 @@ Example: To receive streaming video, you could do this:
 		</script>
 	</body>
 </html>
-~~~html
+~~~
 
 
 You can use insertStream and insertClient in combination with user input to set up an app that allows users to stream to different rooms.
