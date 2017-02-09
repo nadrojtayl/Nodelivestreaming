@@ -7,13 +7,12 @@ Easily insert video-streaming capabilities into your Node applications
 ~~~js
 var app = require('express')();
 var http = require('http').Server(app);
-var lib = require("nodevideostreaming");  
 ~~~
 
 2. Require the nodevideostreaming library
 
 ~~~js
-  var lib = require("nodevideostreaming");
+  var lib = require("webcamstreamingJS");
 ~~~
 
 3. Create a new instance of the library by passing your app and the server as arguments
