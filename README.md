@@ -12,7 +12,7 @@ var http = require('http').Server(app);
 2. Require the nodevideostreaming library
 
 ~~~js
-  var lib = require("webcamstreamingJS");
+  var lib = require("webcamstreaming-js");
 ~~~
 
 3. Create a new instance of the library by passing your app and the server as arguments
