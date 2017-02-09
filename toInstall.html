@@ -57,10 +57,11 @@
 
 
 
-	function insertClient(outerdivid){
+	function insertClient(outerdivid,roomname){
 
 		$("#" + outerdivid).append($("<canvas id = 'streamedto' width ='750px' height = '400px'></canvas>"));
 		var ctx = document.getElementById('streamedto').getContext('2d')
+		socket.emit('register',{nickname:roomname});
    		socket.on('broadcast',function(data){
    			drawto(data.data,ctx)
    		})
@@ -78,13 +79,12 @@
 		}
 
 	}
-	function insertStreamer(outerdivid){
+	function insertStreamer(outerdivid,roomname){
 		//absolutely position video on screen
 		$("#" + outerdivid).append($("<video id = 'streamingvideo'></canvas>"));
 		$("#" + outerdivid).append($("<canvas width = '750px' height = '400px' id = 'fakecanvas' hidden></canvas>"));
 		var video = document.querySelector('video');
 		var canvas = document.getElementById('fakecanvas')
-
 		$('#video').css({position: 'absolute'});
 		//use browsers getusermedia to get user media
 		navigator.getUserMedia = (navigator.getUserMedia ||cnavigator.webkitGetUserMedia ||navigator.mozGetUserMedia ||navigator.msGetUserMedia);
@@ -129,7 +129,7 @@
 		   		
 
 		   		
-		   		socket.emit('picdata',{data:string})
+		   		socket.emit('picdata',{data:string,name:roomname})
 		  // 		drawto(dataurl,ctx)
 	   		}
 
