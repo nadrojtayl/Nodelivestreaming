@@ -77,5 +77,5 @@ Example: To receive streaming video, you could do this:
 
 You can use insertStream and insertClient in combination with user input to set up an app that allows users to stream to different rooms.
 
-Note: This is a naive webstreaming solution. For large projects use webrtc (https://webrtc.org/)
+Note: This is a naive webstreaming solution using getusermedia (https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getUserMedia). For large projects use webrtc (https://webrtc.org/)
 

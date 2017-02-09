@@ -1,6 +1,7 @@
 {
   "name": "nodevideostreaming",
   "version": "1.0.0",
+  "keywords":["video stream","video","streaming","mediasource","multistream","range-slice-stream","mp4-stream","webcam","camera","getusermedia"],
   "description": "Easily implement videostreaming in your node-applications using server-side rendering and websockets",
   "main": "index.js",
   "scripts": {
