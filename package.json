@@ -1,9 +1,9 @@
 {
   "name": "webcamstreaming-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords":["video stream","video","streaming","mediasource","multistream","range-slice-stream","mp4-stream","webcam","camera","getusermedia"],
   "description": "Easily implement videostreaming in your node-applications using server-side rendering and websockets",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
